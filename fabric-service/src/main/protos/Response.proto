@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+import "Requests.proto";
+import "Persistence.proto";
+option go_package = "main";
+option java_package = "cn.edu.nju.software.fabricservice.protomsg";
+
+message SimpleResponse {
+    repeated SimpleRequest requests = 1;
+}
+
+message Response {
+    int32 code = 1;
+    string message = 2;
+    bytes data = 3;
+}
+
+message ItemGetResponse {
+    repeated ItemAsset itemAssets = 1;
+}
+

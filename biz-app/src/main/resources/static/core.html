@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品分析</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body class="container" style="height: 100%">
+
+<!--图表展示-->
+<div class="row" style="height:900px">
+    <div class="col-lg-4 col-md-12" style="">
+
+        <table class="table table-bordered" width='100%' id="top">
+            <thead>
+            <tr style="color: #868686">
+                <th class="center">数据更新时间</th>
+                <th class="center">操作地点</th>
+                <th class="center">操作类型</th>
+            </tr>
+            </thead>
+            <tbody id="tbody" class="center rectangle">
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-8 col-md-12" id="allmap" style="height: 100%;"></div>
+</div>
+
+</body>
+<script src="js/bootstrap.js"></script>
+<script type="text/javascript"
+        src="http://api.map.baidu.com/api?v=2.0&ak=qujYPfVnIp75zI5RPg3nVrWAiVoHDHms"></script>
+<script type="text/javascript">
+    // 百度地图API功能
+    var map = new BMap.Map("allmap");    // 创建Map实例
+    map.centerAndZoom(new BMap.Point(117.404, 35.415), 7);  // 初始化地图,设置中心点坐标和地图级别
+    map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+    var sy = new BMap.Symbol(BMap_Symbol_SHAPE_BACKWARD_OPEN_ARROW, {
+        scale: 0.6,//图标缩放大小
+        strokeColor:'#fff',//设置矢量图标的线填充颜色
+        strokeWeight: '2',//设置线宽
+    });
+    var icons = new BMap.IconSequence(sy, '10', '30');
+    // 创建polyline对象
+    var pois = [
+        new BMap.Point(118.801092,32.06917),
+        new BMap.Point(121.469849,31.200479),
+        new BMap.Point(116.401394,39.903866),
+    ];
+    var polyline =new BMap.Polyline(pois, {
+        enableEditing: false,//是否启用线编辑，默认为false
+        enableClicking: true,//是否响应点击事件，默认为true
+        icons:[icons],
+        strokeWeight:'8',//折线的宽度，以像素为单位
+        strokeOpacity: 0.8,//折线的透明度，取值范围0 - 1
+        strokeColor:"#18a45b" //折线颜色
+    });
+
+    map.addOverlay(polyline);          //增加折线
+
+    var point = new BMap.Point(118.801092,32.06917);
+    var marker = new BMap.Marker(point);  // 创建标注
+    map.addOverlay(marker);
+    var opts = {
+        width : 200,     // 信息窗口宽度
+        height: 100,     // 信息窗口高度
+        title : "海底捞王府井店" , // 信息窗口标题
+    }
+    var infoWindow = new BMap.InfoWindow("地址：北京市东城区王府井大街88号乐天银泰百货八层", opts);  // 创建信息窗口对象
+    marker.addEventListener("click", function(){
+        map.openInfoWindow(infoWindow,point); //开启信息窗口
+    });
+
+    var point1 = new BMap.Point(121.469849,31.200479);
+    var marker1 = new BMap.Marker(point);  // 创建标注
+    map.addOverlay(marker1);
+    var opts1 = {
+        width : 200,     // 信息窗口宽度
+        height: 100,     // 信息窗口高度
+        title : "海底捞王府井店" , // 信息窗口标题
+    }
+    var infoWindow1 = new BMap.InfoWindow("地址：北京市东城区王府井大街88号乐天银泰百货八层", opts1);  // 创建信息窗口对象
+    marker.addEventListener("click", function(){
+        map.openInfoWindow(infoWindow1,point1); //开启信息窗口
+    });
+
+</script>
+</html>

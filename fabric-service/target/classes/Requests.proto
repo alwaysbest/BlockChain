@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+import "Persistence.proto";
+
+option go_package = "main";
+option java_package = "cn.edu.nju.software.fabricservice.protomsg";
+
+message SimpleRequest {
+    int64 timeStamp = 1;
+    string name = 2;
+    string des = 3;
+}
+
+//商品新增的请求
+message ItemAddRequest {
+    string itemId = 1;
+    Address address = 2;
+    ItemInfo itemInfo = 3;
+}
+
+//商品查询请求
+message ItemGetRequest {
+    string itemId = 1;
+    bool histData = 2;
+    bool allData = 3;
+}
+
+//更改商品状态的请求
+message ItemChangeRequest {
+    string itemId = 1;
+    EnvStatus envStatus = 2;
+    ItemStatus itemStatus = 3;
+    OPType opType = 4;
+    string nextOrg = 5;
+    string contact = 6;
+    bool normal = 7;
+    string extraInfo = 8;
+}

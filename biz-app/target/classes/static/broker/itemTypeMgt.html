@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BlockChain Tracing</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+          name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/AdminLTE.css">
+    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+          page. However, you can choose any other skin. Make sure you
+          apply the skin class to the body tag so the changes take effect.
+    -->
+    <link rel="stylesheet" href="../dist/css/skins/skin-blue.css">
+
+    <link rel="stylesheet" href="../custom/custom.css">
+
+</head>
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to get the
+desired effect
+|---------------------------------------------------------|
+| SKINS         | skin-blue                               |
+|               | skin-black                              |
+|               | skin-purple                             |
+|               | skin-yellow                             |
+|               | skin-red                                |
+|               | skin-green                              |
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | fixed                                   |
+|               | layout-boxed                            |
+|               | layout-top-nav                          |
+|               | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <!-- Main Header -->
+    <header class="main-header">
+
+        <!-- Logo -->
+        <a href="#
+        " class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>区块链溯源系统</b></span>
+        </a>
+
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p>Alexander Pierce</p>
+                    <a href="/logout"> 注销</a>
+                </div>
+            </div>
+            <!-- search form (Optional) -->
+            <form action="#" method="get" class="sidebar-form">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i
+                        class="fa fa-search"></i>
+                </button>
+              </span>
+                </div>
+            </form>
+            <!-- /.search form -->
+
+            <ul class="sidebar-menu">
+                <li class="header">HEADER</li>
+                <li><a href="brokerOrder.html"><span>商品订单
+                </span></a></li>
+                <li><a href="brokerStock.html">
+                    <span>库存查看</span></a></li>
+                <li><a href="batchAdd.html">
+                    <span>库存添加</span></a></li>
+                <li><a href="itemTypeMgt.html">
+                    <span>类型管理</span></a></li>
+
+            </ul>
+            <!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div>
+
+
+            <section class="content-header">
+                <h1>
+                    商品类别管理
+                </h1>
+                <ol class="breadcrumb">
+                    <li class="active"><a href="#"><i class="fa fa-dashboard"></i>首页</a></li>
+                </ol>
+            </section>
+
+            <div class="box box-primary col-lg-6"
+                 style="margin-left: 50px;margin-top: 50px;width:800px">
+
+                <div class="box-header with-border">
+                    <h3 class="box-title">商品类别</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+
+                <div class="box-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th style="width: 5px">#</th>
+                            <th>名称</th>
+                            <th>类型</th>
+                            <th width="10px"></th>
+                        </tr>
+                        <tbody id="typeTable">
+                        <tr>
+                            <td>1.</td>
+                            <td>XPS15笔记本</td>
+                            <td>
+                                笔记本电脑
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-box-tool"
+                                        style="padding-bottom: 0px"
+                                        id="dwa" onclick="deleteType(this.id)">
+                                    <i class="fa fa-times"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2.</td>
+                            <td>Macbook</td>
+                            <td>
+                                笔记本电脑
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-box-tool"
+                                        style="padding-bottom: 0px">
+                                    <i class="fa fa-times"></i></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+
+
+            </div>
+
+            <div class="box box-primary  col-lg-6"
+                 style="margin-left: 50px;margin-top: 50px;width: 300px">
+                <div class="box-header with-border">
+                    <h3 class="box-title">添加新类型</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form role="form">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="typeName">名字</label>
+                            <input type="text" class="form-control" id="typeName">
+                        </div>
+                        <div class="form-group">
+                            <label for="typeClass">商品类型</label>
+                            <input type="text" class="form-control" id="typeClass">
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                </form>
+
+                <div class="box-footer">
+
+                    <button class="btn btn-primary pull-right" onclick="submit()">添加</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade in" id="tip-modal" style="display:none; padding-right: 17px;">
+        <div class="modal-dialog activity-specific-info">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">提示</h4>
+                </div>
+                <div class="modal-body activity-specific-info-content">
+                    <p style="padding-top: 10px;padding-left: 10px" id="tip-msg">消息</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary  pull-left" data-dismiss="modal">关闭
+                    </button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+
+
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED JS SCRIPTS -->
+
+<!-- jQuery 2.2.3 -->
+<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../dist/js/echarts.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../dist/js/app.min.js"></script>
+<script src="../plugins/datepicker/bootstrap-datepicker.js"></script>
+<script src="../js/util.js"></script>
+
+<!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. Slimscroll is required when using the
+     fixed layout. -->
+
+<script>
+
+    update()
+
+    var data = [
+        {
+            "id": 0,
+            "itemClass": "string",
+            "itemName": "string"
+        }
+    ]
+
+    function deleteType(id) {
+        $.ajax(
+            {
+                type: 'post',
+                url: '/broker/deleteType',
+                accept: "*/*",
+                data: {"typeId": id},
+                success: function (data) {
+                    if (!data.respStatus.success)
+                        showMessage("删除错误")
+                    else {
+                        update()
+                    }
+                }
+            }
+        )
+    }
+
+    function update() {
+        $.ajax(
+            {
+                type: 'post',
+                url: '/broker/allItemTypes',
+                accept: "*/*",
+                success: function (data) {
+                    updateTypes(data.respData)
+                }
+            }
+        )
+    }
+
+    function updateTypes(data) {
+        var html = ""
+        var dl = data.length
+        for (var i = 0; i < dl; i++) {
+            html += "<tr>\n" +
+                "<td>" + (i + 1) + "</td>\n" +
+                "<td>" + data[i].itemName + "</td>\n" +
+                "<td>\n" +
+                data[i].itemClass +
+                "</td>\n" +
+                "<td>\n" +
+                "<button type=\"button\" class=\"btn btn-box-tool\"\n" +
+                "style=\"padding-bottom: 0px\" id=\"" + data[i].id + "\" onclick=\"deleteType(this.id)\">\n" +
+                "<i class=\"fa fa-times\"></i></button>\n" +
+                "</td>\n" +
+                "</tr>"
+        }
+        $('#typeTable').html(html)
+    }
+
+    function submit() {
+        var formData = {
+            "typeName": $('#typeName').val(),
+            "typeClass": $('#typeClass').val()
+        }
+        console.log(formData)
+        $.ajax(
+            {
+                type: 'post',
+                url: '/broker/addItemTypes',
+                accept: "*/*",
+                data: formData,
+                success: function (data) {
+                    if (!data.respStatus.success)
+                        showMessage("添加失败")
+                    else {
+                        update()
+                    }
+                }
+            }
+        )
+    }
+</script>
+</body>
+</html>

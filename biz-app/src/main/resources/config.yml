@@ -1,0 +1,38 @@
+defaultChannel : mychannel
+caConfig:
+   caUrl : http://192.168.136.133:7054
+channels:
+   -
+      channelName: mychannel
+      peers:
+         peer1: 192.168.136.133:7051
+      orderers:
+         orderer1: 192.168.136.133:7050
+      eventhubs:
+         peer1: 192.168.136.133:7053
+
+users:
+   -
+      username: admin
+      password: adminpw
+      org: org1
+      mspId: Org1MSP
+
+defaultUser: admin
+
+ccName: myCC
+ccVersion: 1.0
+
+chaincodes:
+   -
+      name: myCC
+      version: 1.0
+      func:
+      - addItem
+      - getItem
+      - changeItem
+      - ping
+      peers:
+      - peer1
+      user: admin
+      channel: mychannel

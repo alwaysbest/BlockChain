@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BlockChain Tracing</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+          name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.css">
+    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+          page. However, you can choose any other skin. Make sure you
+          apply the skin class to the body tag so the changes take effect.
+    -->
+    <link rel="stylesheet" href="dist/css/skins/skin-blue.css">
+
+    <link rel="stylesheet" href="custom/custom.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to get the
+desired effect
+|---------------------------------------------------------|
+| SKINS         | skin-blue                               |
+|               | skin-black                              |
+|               | skin-purple                             |
+|               | skin-yellow                             |
+|               | skin-red                                |
+|               | skin-green                              |
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | fixed                                   |
+|               | layout-boxed                            |
+|               | layout-top-nav                          |
+|               | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <!-- Main Header -->
+    <header class="main-header">
+
+        <!-- Logo -->
+        <a href="#
+        " class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>区块链溯源系统</b></span>
+        </a>
+
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+
+            <!-- Sidebar user panel (optional) -->
+
+            <!-- search form (Optional) -->
+            <form action="#" method="get" class="sidebar-form">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i
+                        class="fa fa-search"></i>
+                </button>
+              </span>
+                </div>
+            </form>
+            <!-- /.search form -->
+
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu">
+                <li class="header">HEADER</li>
+                <!-- Optionally, you can add icons to the links -->
+                <li class="active"><a href="#"><i class="fa fa-home"></i>
+                    <span>溯源信息查询</span></a></li>
+
+            </ul>
+            <!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                溯源信息查询
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active"><a href="#"><i class="fa fa-dashboard"></i>首页</a></li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <form>
+                <input type="text" style="width: 400px" id="itemId"
+                       placeholder="商品 id">
+                <a class="btn btn-default" onclick="loadItemInfo()">商品溯源信息查询
+                </a>
+            </form>
+
+            <!--图表展示-->
+            <div class="row" style="height:700px">
+                <div class="col-lg-4 col-md-12" style="">
+
+                    <table class="table table-bordered" width='100%' id="top">
+                        <thead>
+                        <tr>
+                            <th class="center">数据更新时间</th>
+                            <th class="center">操作地点</th>
+                            <th class="center">操作类型</th>
+                            <th class="center">详细信息</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbody" class="center rectangle">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-lg-7 col-md-12" id="allmap" style="height: 100%;"></div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED JS SCRIPTS -->
+
+<!-- jQuery 2.2.3 -->
+<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="dist/js/echarts.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/app.min.js"></script>
+
+<script type="text/javascript"
+        src="http://api.map.baidu.com/api?v=2.0&ak=qujYPfVnIp75zI5RPg3nVrWAiVoHDHms"></script>
+<script type="text/javascript">
+
+
+</script>
+<!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. Slimscroll is required when using the
+     fixed layout. -->
+
+<script>
+
+    var map = new BMap.Map("allmap");    // 创建Map实例
+    map.centerAndZoom(new BMap.Point(117.404, 35.415), 5);  // 初始化地图,设置中心点坐标和地图级别
+    map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+    sy = new BMap.Symbol(BMap_Symbol_SHAPE_BACKWARD_OPEN_ARROW, {
+        scale: 0.3,//图标缩放大小
+        strokeColor: '#10f',//设置矢量图标的线填充颜色
+        strokeWeight: '1',//设置线宽
+    });
+    icons = new BMap.IconSequence(sy, '5%', '5%', false);
+    var polyline
+
+    function addPointAndLine(points) {
+        // 百度地图API功能
+
+        map.removeOverlay(polyline)
+
+        // map.removeAll()
+
+        var bPoints = []
+        points.forEach(function (p) {
+            console.log(p)
+            bPoints.push(new BMap.Point(p.long, p.lal))
+        })
+
+        polyline = new BMap.Polyline(bPoints, {
+            enableEditing: false,//是否启用线编辑，默认为false
+            enableClicking: false,//是否响应点击事件，默认为true
+            icons: [icons],
+            strokeWeight: '2',//折线的宽度，以像素为单位
+            strokeOpacity: 0.8,//折线的透明度，取值范围0 - 1
+            strokeColor: "#18a45b" //折线颜色
+        });
+
+        map.addOverlay(polyline);
+    }
+
+    function appendOpsData(opsData) {
+        $('#tbody').html("")
+        var html = ""
+        opsData.forEach(function (obj) {
+            html += "<tr><td>" + obj['time'] + "</td>"
+                + "<td>" + obj['address'] + "</td>"
+                + "<td>" + obj['opType'] + "</td>"
+                + "<td>" + obj['extraInfo'] + "</td>"
+                + "</tr>"
+        })
+        $('#tbody').append(html)
+    }
+
+
+    function loadItemInfo() {
+        var itemId = $('#itemId').val()
+
+        $.ajax({
+            type: 'post',
+            url: '/item',
+            accept: "*/*",
+            contentType: "application/json",
+            data: JSON.stringify({
+                "authCode": "string",
+                "histData": true,
+                "itemId": itemId
+            }),
+            success: function (data) {
+                var points = []
+                var opsData = []
+                data.respData.forEach(function (d) {
+                    var add = d.envStatus.addressInfo
+                    points.push({
+                        "long": add.longtitude,
+                        "lal": add.latitude
+                    })
+                    opsData.push({
+                        "time": d.time,
+                        "address": add.nodeName,
+                        "opType": getOptypeName(d.operationStatus.opType),
+                        "extraInfo":d.operationStatus.extraInfo
+                    })
+                })
+                // console.log(data)
+                // console.log(points)
+                // console.log(opsData)
+
+                appendOpsData(opsData)
+                addPointAndLine(points)
+            }
+
+        })
+    }
+
+    function getOptypeName(optype) {
+        switch (optype) {
+            case 'CREATED':
+                return '商品出厂'
+            case 'BIZORDER':
+                return '销售订单'
+            case 'LOGISORDER':
+                return '物流订单'
+            case 'DEPARTURE':
+                return '商品出发'
+            case 'ARRIVED':
+                return '商品到达'
+            case 'DELIVERED':
+                return '商品签收'
+            case 'INSTOCK':
+                return '商品入库'
+        }
+    }
+
+</script>
+</body>
+</html>

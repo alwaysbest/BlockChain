@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+
+option go_package = "main";
+option java_package = "cn.edu.nju.software.fabricservice.protomsg";
+
+//操作类型
+enum OPType {
+    //出厂
+    CREATED = 0;
+    //销售订单
+    BIZORDER = 1;
+    //物流订单
+    LOGISORDER = 2;
+    //出发
+    DEPARTURE = 3;
+    //到达
+    ARRIVED = 4;
+    //送达
+    DELIVERED = 5;
+    //分销商入库
+    INSTOCK = 6;
+}
+
+//地址信息
+message Address {
+    string name = 1;
+    string desc = 2;
+    double longitude = 3;
+    double latitude = 4;
+}
+//环境信息，目前只有地址
+message EnvStatus {
+    Address address = 1;
+}
+//操作信息
+message OpsStatus {
+    string currentOrg = 1;
+    string lastOrg = 2;
+    OPType opType = 3;
+    string contactWay = 4;
+    string extraInfo = 5;
+}
+
+//商品信息
+message ItemInfo {
+    string name = 1;
+    string class = 2;
+    string batchNumber = 3;
+    int64 manufactureDate = 4;
+    string note = 5;
+}
+
+//商品状态
+message ItemStatus {
+    bool normal = 1;
+    string logs = 2;
+}
+//主要的商品资产描述
+message ItemAsset {
+    int64 timestamp = 1;
+    string itemId = 2;
+    ItemInfo itemInfo = 3;
+    ItemStatus itemStatus = 4;
+    EnvStatus evnStatus = 5;
+    OpsStatus opsStatus = 6;
+}
